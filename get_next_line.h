@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:08:26 by kchiang           #+#    #+#             */
-/*   Updated: 2025/05/30 15:06:02 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/05/31 10:00:04 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+/* Default BUFFER_SIZE if not defined in terminal */
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 100
+#  define BUFFER_SIZE 100
 # endif
 
-typedef struct s_list
-{
-	char			*line;
-	int				fd;
-	struct s_list	*next;
-}					t_list;
+/* Soft limits for max file descriptor limit */
+# ifndef MAX_FDS
+#  define MAX_FDS 1024
+# endif
 
 #endif
