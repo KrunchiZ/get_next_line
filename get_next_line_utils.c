@@ -6,28 +6,26 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:12:43 by kchiang           #+#    #+#             */
-/*   Updated: 2025/05/31 11:28:54 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/05/31 12:28:52 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/* for find_last_newline to work, temp has to be null terminated */
-int	tmp_has_line(char *str)
+/* Check to see if previous buffer has a complete line */
+int	buffer_has_line(char *str)
 {
-	char	*last;
-	int		i;
-
-	last = find_last_newline(str);
-	while (*str != '\n')
-		str++;
-	if (str != last);
-	
+	while (*str)
+	{
+		if (*str++ == '\n')
+			return (1);
+	}
+	return (0);
 }
 
-/* Extract a line from tmp and return it */
-/* After extracting, shift the remaining char to the front of str */
-void	*extract_tmp(char *str)
+/* Extract a line from tmp and return it
+ * After extracting, shift the remaining char to the front of str */
+void	*extract_buffer(char *str)
 {
 	char	*host;
 	int		len;
@@ -55,4 +53,27 @@ void	*extract_tmp(char *str)
 	return (host);
 }
 
+/* Parse the non newline ended, null terminated buffer str into host,
+ * then free buffer                                                   */
+char	*buffer_to_host(char *buffer)
+{
+	char	*host;
+	int		len;
+	int		i;
 
+	len = 0;
+	while (buffer[len])
+		len++;
+	host = malloc(sizeof(char) * (len + 1));
+	if (!host)
+		return (NULL);
+	i = 0;
+	while (buffer[i])
+	{
+		host[i] = buffer[i];
+		i++;
+	}
+	host[i] = '\0';
+	free(buffer);
+	return (host);
+}
