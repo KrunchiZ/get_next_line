@@ -6,14 +6,19 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:12:43 by kchiang           #+#    #+#             */
-/*   Updated: 2025/05/31 17:46:34 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/05/31 20:02:43 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/* Check to see if previous buffer has a complete line */
-int	buffer_has_line(char *str)
+/* ************************************************************************** */
+/* FUNCTIONS FOR BUFFER CHECKING WHEN GET_NEXT_LINE GETS RECALLED             */
+/* ************************************************************************** */
+
+/* Check to see if previous buffer has a complete line
+ */
+int	has_newline(char *str)
 {
 	while (*str)
 	{
@@ -23,8 +28,9 @@ int	buffer_has_line(char *str)
 	return (0);
 }
 
-/* Extract a line from tmp and return it                          */
-/* After extracting, shift the remaining char to the front of str */
+/* Extract a line from tmp and return it.
+ * After extracting, shift the remaining char to the front of str.
+ */
 void	*extract_buffer(char *str)
 {
 	char	*host;
@@ -53,70 +59,28 @@ void	*extract_buffer(char *str)
 	return (host);
 }
 
-/* Parse the non newline ended, null terminated buffer str into host, */
-/* then free buffer                                                   */
-char	*buffer_to_host(char *buffer)
+/* Parse the non newline ended, null terminated src string into dest,
+ * then free src.
+ * Basically a modified ft_strdup.
+ */
+char	*string_transfer(char *src)
 {
-	char	*host;
-	int		len;
+	char	*dest;
 	int		i;
 
-	len = 0;
-	while (buffer[len])
-		len++;
-	host = malloc(sizeof(char) * (len + 1));
-	if (!host)
+	i = 0;
+	while (src[i])
+		i++;
+	dest = malloc(sizeof(char) * (i + 1));
+	if (!dest)
 		return (NULL);
 	i = 0;
-	while (buffer[i])
+	while (src[i])
 	{
-		host[i] = buffer[i];
+		dest[i] = src[i];
 		i++;
 	}
-	host[i] = '\0';
-	free(buffer);
-	return (host);
-}
-
-/* Join host and buffer together into a new malloc string and return it. */
-/* Host will be freed after parsing to new_host                          */
-char	*host_buffer_join(char *host, char *buffer, int rbytes)
-{
-	int		i;
-	int		j;
-	int		start;
-	char	*new_host;
-
-	i = 0;
-	while (host[i])
-		i++;
-	new_host = malloc(sizeof(char) * (i + rbytes + 1));
-	j = i;
-	while (j-- > 0)
-		new_host[j] = host[j];
-	free(host);
-	while (j < rbytes && buffer[j] != '\n')
-		new_host[i++] = buffer[j++];
-	if (j < rbytes)
-		new_host[i++] = '\n';
-	new_host[i] = '\0';
-	start = 0;
-	while (j < rbytes)
-		buffer[start++] = buffer[j++];
-	buffer[start] = '\0';
-	return (new_host);
-}
-
-char	*read_line(char *buffer, char *host, int fd)
-{
-	int		rbytes;
-	char	*new_host;
-
-	rbytes = read(fd, buffer, BUFFER_SIZE);
-	if (!rbytes)
-		return (NULL);
-	new_host = host_buffer_join(host, buffer, rbytes);
-	if (!new_host)
-		return (NULL);
-	return (new_host);
+	dest[i] = '\0';
+	free(src);
+	return (dest);
 }
