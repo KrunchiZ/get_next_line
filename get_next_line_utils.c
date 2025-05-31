@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:12:43 by kchiang           #+#    #+#             */
-/*   Updated: 2025/05/31 12:28:52 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/05/31 13:51:23 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ char	*buffer_to_host(char *buffer)
 	}
 	host[i] = '\0';
 	free(buffer);
+	buffer = NULL;
 	return (host);
 }

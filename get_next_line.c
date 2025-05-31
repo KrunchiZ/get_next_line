@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:07:50 by kchiang           #+#    #+#             */
-/*   Updated: 2025/05/31 12:30:08 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/05/31 14:02:42 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,12 @@ char	*get_next_line(int fd)
 		return (NULL);
 	buffer[BUFFER_SIZE] = '\0';
 	rbytes = read(fd, buffer[fd], BUFFER_SIZE);
+	if (!rbytes)
+		return (NULL);
+	if (rbytes < BUFFER_SIZE)
+	{
+		host = extract_buffer(buffer[fd]);
+		free(buffer[fd]);
+		return (host);
+	}
 }
