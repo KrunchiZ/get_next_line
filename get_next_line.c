@@ -6,44 +6,39 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:07:50 by kchiang           #+#    #+#             */
-/*   Updated: 2025/05/31 14:02:42 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/05/31 17:46:32 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	*read_line(char *buffer, int *len)
-{
-}
-
-/* Buffer has to be null terminated to differentiate between true complete
- * line and unfinished line.
- * Buffer will be freed if whole buffer has been parsed back to host.      */
+/* Buffer has to be null terminated to differentiate between true complete */
+/* line and unfinished line.                                               */
+/* Buffer will be freed if whole buffer has been parsed back to host.      */
 char	*get_next_line(int fd)
 {
-	int			rbytes;
 	char		*host;
 	static char	*buffer[MAX_FDS];
 
 	if (fd < 0)
 		return (NULL);
+	host = NULL;
 	if (buffer[fd])
 	{
-		if (buffer_has_newline(tmp[fd]))
+		if (has_newline(buffer[fd]))
 			return (extract_buffer(buffer[fd]));
 		host = buffer_to_host(buffer[fd]);
 	}
 	buffer[fd] = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer[fd])
-		return (NULL);
-	buffer[BUFFER_SIZE] = '\0';
-	rbytes = read(fd, buffer[fd], BUFFER_SIZE);
-	if (!rbytes)
-		return (NULL);
-	if (rbytes < BUFFER_SIZE)
 	{
-		host = extract_buffer(buffer[fd]);
-		free(buffer[fd]);
-		return (host);
+		free(host);
+		return (NULL);
 	}
+	buffer[fd][BUFFER_SIZE] = '\0';
+	host = read_line(buffer[fd], host, fd);
+	if (host)
+		return (host);
+	free(buffer[fd]);
+	return (NULL);
 }

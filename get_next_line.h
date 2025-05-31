@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:08:26 by kchiang           #+#    #+#             */
-/*   Updated: 2025/05/31 12:30:13 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/05/31 17:38:42 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@
 int		buffer_has_line(char *str);
 void	*extract_buffer(char *str);
 char	*buffer_to_host(char *buffer);
+char	*host_buffer_join(char *host, char *buffer, int rbytes);
+char	*read_line(char *buffer, char *host, int fd);
 
 #endif

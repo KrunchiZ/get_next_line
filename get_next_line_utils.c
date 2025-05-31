@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:12:43 by kchiang           #+#    #+#             */
-/*   Updated: 2025/05/31 13:51:23 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/05/31 17:46:34 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	buffer_has_line(char *str)
 	return (0);
 }
 
-/* Extract a line from tmp and return it
- * After extracting, shift the remaining char to the front of str */
+/* Extract a line from tmp and return it                          */
+/* After extracting, shift the remaining char to the front of str */
 void	*extract_buffer(char *str)
 {
 	char	*host;
 	int		len;
 	int		i;
-	int		new;
+	int		start;
 
 	len = 0;
 	while (str[len] != '\n')
@@ -46,15 +46,15 @@ void	*extract_buffer(char *str)
 	}
 	host[i++] = '\n';
 	host[i] = '\0';
-	new = 0;
+	start = 0;
 	while (str[i])
-		str[new++] = str[i++];
-	str[new] = '\0';
+		str[start++] = str[i++];
+	str[start] = '\0';
 	return (host);
 }
 
-/* Parse the non newline ended, null terminated buffer str into host,
- * then free buffer                                                   */
+/* Parse the non newline ended, null terminated buffer str into host, */
+/* then free buffer                                                   */
 char	*buffer_to_host(char *buffer)
 {
 	char	*host;
@@ -75,6 +75,48 @@ char	*buffer_to_host(char *buffer)
 	}
 	host[i] = '\0';
 	free(buffer);
-	buffer = NULL;
 	return (host);
+}
+
+/* Join host and buffer together into a new malloc string and return it. */
+/* Host will be freed after parsing to new_host                          */
+char	*host_buffer_join(char *host, char *buffer, int rbytes)
+{
+	int		i;
+	int		j;
+	int		start;
+	char	*new_host;
+
+	i = 0;
+	while (host[i])
+		i++;
+	new_host = malloc(sizeof(char) * (i + rbytes + 1));
+	j = i;
+	while (j-- > 0)
+		new_host[j] = host[j];
+	free(host);
+	while (j < rbytes && buffer[j] != '\n')
+		new_host[i++] = buffer[j++];
+	if (j < rbytes)
+		new_host[i++] = '\n';
+	new_host[i] = '\0';
+	start = 0;
+	while (j < rbytes)
+		buffer[start++] = buffer[j++];
+	buffer[start] = '\0';
+	return (new_host);
+}
+
+char	*read_line(char *buffer, char *host, int fd)
+{
+	int		rbytes;
+	char	*new_host;
+
+	rbytes = read(fd, buffer, BUFFER_SIZE);
+	if (!rbytes)
+		return (NULL);
+	new_host = host_buffer_join(host, buffer, rbytes);
+	if (!new_host)
+		return (NULL);
+	return (new_host);
 }
