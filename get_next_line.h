@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:08:26 by kchiang           #+#    #+#             */
-/*   Updated: 2025/05/31 10:00:04 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/05/31 11:30:43 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,8 @@
 # ifndef MAX_FDS
 #  define MAX_FDS 1024
 # endif
+
+int		tmp_has_line(char *str);
+void	*extract_tmp(char *str);
 
 #endif
