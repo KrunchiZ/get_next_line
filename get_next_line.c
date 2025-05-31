@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:07:50 by kchiang           #+#    #+#             */
-/*   Updated: 2025/05/31 20:12:26 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/05/31 20:20:56 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static char	*join_host_buffer(char *host, char *buffer, int rbytes)
 	while (host[i])
 		i++;
 	new_host = malloc(sizeof(char) * (i + rbytes + 1));
+	if (!new_host)
+		return (NULL);
 	j = i;
 	while (j-- > 0)
 		new_host[j] = host[j];
