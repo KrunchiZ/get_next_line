@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:08:26 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/03 20:35:14 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/03 12:53:41 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # endif
 
 char	*get_next_line(int fd);
-int		has_newline(char *buffer);
-char	*extract_buffer(char *buffer);
+int		has_newline(char *str);
+void	*extract_buffer(char *str);
 char	*string_transfer(char *src);
 
 #endif

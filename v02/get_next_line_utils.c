@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:12:43 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/03 20:32:59 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/04 00:06:01 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,22 @@
 
 /* Check to see if previous buffer has a complete line
  */
-int	has_newline(char *buffer)
+int	has_newline(char *str)
 {
-	while (*buffer)
+	if (!str)
+		return (0);
+	while (*str)
 	{
-		if (*buffer == '\n')
+		if (*str++ == '\n')
 			return (1);
-		buffer++;
 	}
 	return (0);
 }
 
-/* Extract a newline terminated line from buffer and return it.
- * After extracting, shift the remaining string to the front of buffer.
+/* Extract a line from tmp and return it.
+ * After extracting, shift the remaining char to the front of str.
  */
-char	*extract_buffer(char *buffer)
+void	*extract_buffer(char *str)
 {
 	char	*host;
 	int		len;
@@ -40,7 +41,7 @@ char	*extract_buffer(char *buffer)
 	int		start;
 
 	len = 0;
-	while (buffer[len] != '\n')
+	while (str[len] != '\n')
 		len++;
 	host = malloc(sizeof(char) * (len + 2));
 	if (!host)
@@ -48,28 +49,32 @@ char	*extract_buffer(char *buffer)
 	i = 0;
 	while (i < len)
 	{
-		host[i] = buffer[i];
+		host[i] = str[i];
 		i++;
 	}
 	host[i++] = '\n';
 	host[i] = '\0';
 	start = 0;
-	while (buffer[i])
-		buffer[start++] = buffer[i++];
-	buffer[start] = '\0';
+	while (str[i])
+		str[start++] = str[i++];
+	str[start] = '\0';
 	return (host);
 }
 
-/* Parse the non newline ended, null terminated src string into dest
+/* Parse the non newline ended, null terminated src string into dest,
+ * then free src.
+ * Basically a modified ft_strdup.
  */
 char	*string_transfer(char *src)
 {
-	int		i;
 	char	*dest;
+	int		i;
 
 	i = 0;
 	while (src[i])
 		i++;
+	if (!i)
+		return (NULL);
 	dest = malloc(sizeof(char) * (i + 1));
 	if (!dest)
 		return (NULL);
