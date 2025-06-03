@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:12:43 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/03 20:04:25 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/03 20:10:59 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ int	has_newline(char *str)
 		return (0);
 	while (*str)
 	{
-		if (*str == '\n')
+		if (*str++ == '\n')
 			return (1);
-		str++;
 	}
 	return (0);
 }
