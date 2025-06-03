@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:07:50 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/03 19:06:38 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/03 19:18:19 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static char	*read_fd(char *host, char *buffer, int fd)
 
 	rbytes = read(fd, buffer, BUFFER_SIZE);
 	if (rbytes <= 0)
-		return (free(host), NULL);
+		return (host);
 	if (!host)
 	{
 		host = malloc(sizeof(char) * 1);
@@ -104,10 +104,7 @@ char	*get_next_line(int fd)
 	}
 	buffer[fd] = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer[fd])
-	{
-		free(host);
-		return (NULL);
-	}
+		return (free(host), NULL);
 	buffer[fd][BUFFER_SIZE] = '\0';
 	host = read_fd(host, buffer[fd], fd);
 	if (host)
