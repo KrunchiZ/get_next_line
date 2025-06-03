@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:07:50 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/03 15:00:29 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/03 19:06:38 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static char	*join_host_buffer(char *host, char *buffer, int rbytes)
 	char	*new_host;
 
 	i = 0;
-	j = 0;
 	while (host[i])
 		i++;
 	new_host = malloc(sizeof(char) * (i + rbytes + 1));
@@ -31,7 +30,7 @@ static char	*join_host_buffer(char *host, char *buffer, int rbytes)
 	j = i;
 	while (j-- > 0)
 		new_host[j] = host[j];
-	free(host);
+	j = 0;
 	while (j < rbytes && buffer[j] != '\n')
 		new_host[i++] = buffer[j++];
 	if (j < rbytes)
@@ -41,7 +40,7 @@ static char	*join_host_buffer(char *host, char *buffer, int rbytes)
 	while (j < rbytes)
 		buffer[i++] = buffer[j++];
 	buffer[i] = '\0';
-	return (new_host);
+	return (free(host), new_host);
 }
 
 /* Read fd and combine host(if there's any from previous g_n_line call) with
@@ -64,10 +63,7 @@ static char	*read_fd(char *host, char *buffer, int fd)
 
 	rbytes = read(fd, buffer, BUFFER_SIZE);
 	if (rbytes <= 0)
-	{
-		free(host);
-		return (NULL);
-	}
+		return (free(host), NULL);
 	if (!host)
 	{
 		host = malloc(sizeof(char) * 1);

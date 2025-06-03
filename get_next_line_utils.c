@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:12:43 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/03 15:01:20 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/03 19:05:36 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,5 @@ char	*string_transfer(char *src)
 		i++;
 	}
 	dest[i] = '\0';
-	free(src);
-	return (dest);
+	return (free(src), dest);
 }
