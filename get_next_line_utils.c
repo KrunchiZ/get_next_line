@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:12:43 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/03 19:39:02 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/03 19:41:44 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ char	*string_transfer(char *src)
 	while (src[i])
 		i++;
 	if (!i)
-		return (NULL);
+		return (free(src), NULL);
 	dest = malloc(sizeof(char) * (i + 1));
 	if (!dest)
-		return (NULL);
+		return (free(src), NULL);
 	i = 0;
 	while (src[i])
 	{
