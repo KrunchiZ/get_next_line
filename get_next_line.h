@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:08:26 by kchiang           #+#    #+#             */
-/*   Updated: 2025/05/31 20:03:03 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/03 12:53:41 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 #  define MAX_FDS 1024
 # endif
 
+char	*get_next_line(int fd);
 int		has_newline(char *str);
 void	*extract_buffer(char *str);
 char	*string_transfer(char *src);
