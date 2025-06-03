@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:07:50 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/03 13:18:57 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/03 15:00:29 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ char	*get_next_line(int fd)
 	if (host)
 		return (host);
 	free(buffer[fd]);
+	buffer[fd] = NULL;
 	return (NULL);
 }
