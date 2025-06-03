@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:07:50 by kchiang           #+#    #+#             */
-/*   Updated: 2025/05/31 20:20:56 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/03 13:15:13 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static char	*read_fd(char *host, char *buffer, int fd)
 	char	*new_host;
 
 	rbytes = read(fd, buffer, BUFFER_SIZE);
-	if (!rbytes)
+	if (rybtes <= 0)
 	{
 		free(host);
 		return (NULL);
