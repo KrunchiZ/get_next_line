@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:07:50 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/04 13:04:52 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/04 13:20:41 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_next_line(int fd)
 	char		*host;
 	static char	*buffer[MAX_FDS];
 
-	if (fd < 0)
+	if (fd < 0 || fd > MAX_FDS || BUFFER_SIZE <= 0)
 		return (NULL);
 	host = NULL;
 	if (buffer[fd])
