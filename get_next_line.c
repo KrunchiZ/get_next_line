@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:07:50 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/04 12:04:12 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/04 12:05:23 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char	*get_next_line(int fd)
 	buffer[fd] = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer[fd])
 		return (free(host), NULL);
-	buffer[fd][0] = '\0'
+	buffer[fd][0] = '\0';
 	host = read_fd(host, buffer[fd], fd);
 	if (host)
 		return (host);
