@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:12:43 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/04 12:19:37 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/04 15:09:40 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,4 +153,3 @@ char	*read_fd(char *host, char *buffer, int fd)
 	}
 	return (new_host);
 }
-
