@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:08:26 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/04 12:27:09 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/05 11:34:13 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 /* Default BUFFER_SIZE if not defined in terminal */
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 1024
 # endif
 
 /* Soft limits for max file descriptor limit */
