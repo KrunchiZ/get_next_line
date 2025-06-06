@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:07:50 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/04 13:21:33 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/06 10:04:05 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ char	*get_next_line(int fd)
 	if (has_newline(buffer[fd]))
 		return (extract_buffer(buffer[fd]));
 	host = string_transfer(buffer[fd]);
+	if (!host)
+		return (NULL);
 	buffer[fd][0] = '\0';
 	host = read_fd(host, buffer[fd], fd);
 	if (host)
