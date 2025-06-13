@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:12:43 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/09 16:53:27 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/04 12:26:19 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	*string_transfer(char *src)
 /* Join host and buffer together into a new malloc string and return it.
  * Host will be freed after parsing to new_host.
  */
-static char	*join_host_buffer(char *host, char *buffer, int rbytes)
+char	*join_host_buffer(char *host, char *buffer, int rbytes)
 {
 	int		i;
 	int		j;
@@ -136,6 +136,13 @@ char	*read_fd(char *host, char *buffer, int fd)
 	rbytes = read(fd, buffer, BUFFER_SIZE);
 	if (rbytes <= 0)
 		return (host);
+	if (!host)
+	{
+		host = malloc(sizeof(char) * 1);
+		if (!host)
+			return (NULL);
+		host[0] = '\0';
+	}
 	new_host = join_host_buffer(host, buffer, rbytes);
 	if (!new_host)
 		return (NULL);

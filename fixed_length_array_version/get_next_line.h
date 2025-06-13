@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:08:26 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/09 16:51:27 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/04 12:27:09 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 /* Default BUFFER_SIZE if not defined in terminal */
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 8192
+#  define BUFFER_SIZE 100
 # endif
 
 /* Soft limits for max file descriptor limit */
@@ -30,6 +30,7 @@ char	*get_next_line(int fd);
 int		has_newline(char *str);
 void	*extract_buffer(char *str);
 char	*string_transfer(char *src);
+char	*join_host_buffer(char *host, char *buffer, int rbytes);
 char	*read_fd(char *host, char *buffer, int fd);
 
 #endif
