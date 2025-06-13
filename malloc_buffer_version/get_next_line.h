@@ -18,7 +18,7 @@
 
 /* Default BUFFER_SIZE if not defined in terminal */
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
+#  define BUFFER_SIZE 8192
 # endif
 
 /* Soft limits for max file descriptor limit */
