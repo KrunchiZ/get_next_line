@@ -6,16 +6,12 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:08:26 by kchiang           #+#    #+#             */
-/*   Updated: 2025/07/14 21:07:27 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/10/22 20:01:07 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdbool.h>
 
 /* Default BUFFER_SIZE if not defined in terminal */
 # ifndef BUFFER_SIZE

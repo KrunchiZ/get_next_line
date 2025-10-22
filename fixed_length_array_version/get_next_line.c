@@ -6,10 +6,11 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:07:50 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/04 13:21:33 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/10/22 20:00:19 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "get_next_line.h"
 
 /* Buffer is null terminated to differentiate between true complete

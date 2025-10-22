@@ -6,10 +6,13 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:12:43 by kchiang           #+#    #+#             */
-/*   Updated: 2025/08/04 20:14:40 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/10/22 20:03:06 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdbool.h>
 #include "get_next_line.h"
 
 /* Check to see if previous buffer has a complete line
